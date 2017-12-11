@@ -1,0 +1,13 @@
+/*
+Custom Style
+*/
+
+span.sub-dt {
+    text-align: center;
+    display: block;
+    margin-bottom: 46px;
+    font-size: 22px;
+}
+#content_wrapper .front-content .main-dt{
+    margin-bottom: 5px;
+}

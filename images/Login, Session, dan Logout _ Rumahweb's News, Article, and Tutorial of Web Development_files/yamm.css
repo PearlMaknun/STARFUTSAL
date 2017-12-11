@@ -1,0 +1,179 @@
+/*!
+ * Yamm!3 - Yet another megamenu for Bootstrap 3
+ * http://geedmo.github.com/yamm3
+ * 
+ * @geedmo - Licensed under the MIT license
+ */
+.yamm .nav,
+.yamm .collapse,
+.yamm .dropup,
+.yamm .dropdown {
+  position: static;
+}
+.yamm .container {
+  position: relative;
+}
+.yamm .dropdown-menu {
+  left: auto;
+}
+.yamm .yamm-content {
+  padding: 20px 30px;
+}
+.yamm .dropdown.yamm-fw .dropdown-menu {
+  left: 0;
+  right: 0;
+}
+
+
+/* sandal starts here */
+.navbar{
+	border-bottom: solid 1px #f0f0f0;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:active{
+	background-color: transparent !important;
+}
+.yamm .dropdown-menu {
+	background-color: #fff;
+	margin: 0 -0.1vw;
+	padding: 0 0.1vw;
+	position: absolute;
+	top: 78px;
+	left: 0;
+
+} 
+
+.yamm .dropdown-menu-domain:before{
+	content: url('../../assets/img/siku.png');
+	width: 30px;
+	height: 30px;
+	position: absolute; 
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: -24px;
+	/*left: 465px;*/
+	left: 370px;
+}
+.yamm .dropdown-menu-hosting:before{
+	content: url('../../assets/img/siku.png');
+	width: 30px;
+	height: 30px;
+	position: absolute; 
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: -24px;
+	/*left: 590px;*/
+	left: 495px;
+}
+.yamm .dropdown-menu-website:before{
+	content: url('../../assets/img/siku.png');
+	width: 30px;
+	height: 30px;
+	position: absolute; 
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: -24px;
+	/*left: 715px;*/
+	left: 618px;
+}
+.yamm .dropdown-menu-semua-layanan:before{
+	content: url('../../assets/img/siku.png');
+	width: 30px;
+	height: 30px;
+	position: absolute; 
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: -24px;
+	/*left: 865px;*/
+	left: 770px;
+}
+.yamm .dropdown-menu-5:before{
+	content: url('../../assets/img/siku.png');
+	width: 30px;
+	height: 30px;
+	position: absolute; 
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: -8px;
+	left: 855px;
+}
+.jumbotron {
+  margin: 60px 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+  .jumbotron.intro {
+    margin-top: 0;
+  }
+
+  .jumbotron .navbar {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+/* menu styes */
+.list-unstyled,
+.list-unstyled ul { min-width: 120px }
+
+@media ( min-width: 767px ) {
+  .panel-group { width: 400px; }
+  .thumbnail { margin: 0; }
+}
+
+/* Mega Grid styles */
+.mega-grid {
+  padding: 10px 30px;
+}
+.mega-grid [class*="col-"] {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-size: 1em;
+	text-align: left;
+	line-height: 2;
+	background-color: #fff;
+	border: 1px solid #fff;
+	text-transform: none !important;
+}
+.mega-caption{
+	font-size: 25px;
+	font-weight: 800;
+	margin: 10px 0;
+}
+.mega-grid p{
+	line-height:25px;
+}
+
+/* hack untuk posisi pointer biar pas */
+@media all and (max-width: 1024px) {
+	.yamm .dropdown-menu-domain:before{
+		/*left: 530px;*/
+		left: 455px;
+	}
+	.yamm .dropdown-menu-hosting:before{
+		/*left: 640px;*/
+		left: 560px;
+	}
+	.yamm .dropdown-menu-website:before{
+		/*left: 745px;*/
+		left: 670px;
+	}
+	.yamm .dropdown-menu-semua-layanan:before{
+		/*left: 865px;*/
+		left: 795px;
+	}
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content=" :: &lt;p&gt;Dalam praktek sehari-hari seringkali kita dihadapkan pada persoalan untuk menampilkan data per kurun waktu tertentu. Semisal dalam penyajian data laporan transaksi per hari, per minggu, per bulan atau per tahun. Secara umum untuk pengelompokan data (ag">
+    <meta name="author" content="Cahya DSN">
+    <meta name="keywords" content="minerva, cahya, php,javascript, mysql, source code, snipet">
+    <title>Minerva :: Menampilkan Data Harian, Mingguan, Bulanan dan Tahunan dengan MySQL</title>
+    <link rel="shortcut icon" href="http://cahyadsn.dev.php.or.id/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://cahyadsn.dev.php.or.id/favicon.ico" type="image/x-icon">
+    <link href="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/modern.css" rel="stylesheet">
+    <link href="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/modern-responsive.css" rel="stylesheet">
+    <link href="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/site.css" rel="stylesheet" type="text/css">
+    <link href="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/prettify.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/jquery-1.js"></script>
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/jquery.js"></script>
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/dropdown.js"></script>
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/input-control.js"></script>
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/carousel.js"></script>
+</head>
+  <body class="metrouicss" onload="prettyPrint()">
+    <div class="page">
+      <div class="nav-bar bg-color-greenDark">
+          <div class="nav-bar-inner padding10">
+              <span class="pull-menu"></span>
+              <a href="http://cahyadsn.dev.php.or.id/index.php"><span class="element brand">
+                  Minerva <small>v 1.0</small>
+              </span></a>
+              <div class="divider"></div>
+              <ul class="menu">
+                  <li><a href="http://cahyadsn.dev.php.or.id/index.php">Home</a></li>
+                  <!--li><a href="about.php">About</a></li -->
+                                    <li><a href="http://cahyadsn.dev.php.or.id/snippet.php">Snippet Code</a></li>
+                  <li><a href="http://cahyadsn.dev.php.or.id/motivation.php">Motivation</a></li>
+                  <li><a href="http://cahyadsn.dev.php.or.id/article.php">Article</a></li><li><a href="http://cahyadsn.dev.php.or.id/extra/">Extra</a></li>
+                  <li><a href="http://cahyadsn.dev.php.or.id/login.php">Login</a></li>
+                                </ul>   
+          </div>
+      </div>
+    </div>
+    <div class="page secondary">
+      <div class="page-header">
+          <div class="page-header-content">
+              <h2><small>Article</small><br>
+              <strong class="fg-color-greenDark">Menampilkan Data Harian, Mingguan, Bulanan dan Tahunan dengan MySQL</strong></h2>
+              <a href="http://cahyadsn.dev.php.or.id/motivation.php" class="back-button big page-back"></a>
+          </div>
+      </div>            
+      <div class="page-region">
+        <div class="page-region-content">
+          <div class="grid">
+            <div class="row">
+              <div class="span7">
+                <blockquote class="place-right">Created <strong>2014-07-02 02:06:03</strong> | Updated <strong>2016-09-16 02:14:57</strong></blockquote>
+                <p>&nbsp;</p>
+                <div class="row" name="content" id="content">
+                  <style>h1 {font-size:2em !important; }</style>
+<h1>Pendahuluan</h1>
+<p>Dalam praktek sehari-hari seringkali kita dihadapkan pada persoalan 
+untuk menampilkan data per kurun waktu tertentu. Semisal dalam penyajian
+ data laporan transaksi per hari, per minggu, per bulan atau per tahun. 
+Secara umum untuk pengelompokan data (aggregasi data) digunakan 
+klausa&nbsp;<strong>GROUP BY</strong>&nbsp;pada pernyataan&nbsp;<em>query</em>-nya.Pada tutorial kali ini, kita akan memperlajari pengelompokan data harian, mingguan, bulanan dan tahunan.</p>
+<p>Sebelumnya, sebagai persiapan kita buat terlebih dahulu satu tabel 
+untuk keperluan pembelajaran kita, yang sebut saja nama tabelnya adalah `<em>tbl_data</em>` dengan struktur dan contoh data sebagai berikut:</p>
+<pre class="brush:sql">-- -membuat tabel `tbl_data`
+DROP TABLE IF EXISTS `tbl_data`;
+CREATE TABLE `tbl_data` (
+`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+`data` varchar(50) NOT NULL,
+`tanggal` DATE NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- -mengisi tabel `tbl_data`
+INSERT INTO `tbl_data`(data,tanggal)
+VALUES
+('satu','2013-07-07'),
+('dua','2013-12-08'),
+('tiga','2013-12-21'),
+('empat','2014-01-01'),
+('lima','2014-01-07'),
+('enam','2014-01-07'),
+('tujuh','2014-01-15'),
+('delapan','2014-02-02'),
+('sembilan','2014-02-03'),
+('sepuluh','2014-03-01'),
+('sebelas','2014-03-14'),
+('duabelas','2014-04-05'),
+('tigabelas','2014-05-06'),
+('empatbelas','2014-06-06'),
+('limabelas','2014-06-30'),
+('enambelas','2014-07-07'),
+('tujuhbelas','2014-07-10');</pre>
+<p>&nbsp;</p>
+<p>&nbsp;Field/kolom terpenting dari tabel tersebut adalah field `tanggal` yang bertipe data<strong>&nbsp;DATE</strong>,
+ yang nantinya kita gunakan sebagai acuan untuk pengelompokkan data. 
+Perlu diperhatikan di sini, untuk mengoptimalkan penggunaan 
+fungsi-fungsi di database MySQL ada baiknya gunakan tipe data yang 
+sesuai dengan peruntukkannya, Semisal untuk field `<em>tanggal</em>` gunakan tipe data<strong>&nbsp;DATE,DATETIME</strong>&nbsp;atau&nbsp;<strong>TIMESTAMP</strong>. Penggunaan tipe data&nbsp;<strong>VARCHAR</strong>&nbsp;untuk
+ field tanggal bisa jadi mudah penggunaannya, namun dapat menimbulkan 
+kesulitan jika diperlukan pengolahan data berdasarkan tanggal, semisal 
+untuk pengurutan, pengelompokan, menghitung selisih hari dan sebagainya.</p>
+<h1>Pengelompokan Data Harian</h1>
+<p>Untuk mengelompokkan data berdasarkan tanggal (harian), adalah mudah 
+saja, karena kita mempunyai satu field yang berisi data tanggal yaitu 
+field tanggal maka kita tinggal menggunakan klausa&nbsp;<strong>GROUP BY</strong>&nbsp;pada field tersebut. Contoh&nbsp;<em>query</em>nya adalah sebagai berikut:</p>
+<pre class="brush:sql">-- -mengelompokkan per hari
+SELECT tanggal,COUNT(*) AS jumlah_harian
+FROM tbl_data
+GROUP BY tanggal;
+
++------------+---------------+
+| tanggal    | jumlah_harian |
++------------+---------------+
+| 2013-07-07 |             1 |
+| 2013-12-08 |             1 |
+| 2013-12-21 |             1 |
+| 2014-01-01 |             1 |
+| 2014-01-07 |             2 |
+| 2014-01-15 |             1 |
+| 2014-02-02 |             1 |
+| 2014-02-03 |             1 |
+| 2014-03-01 |             1 |
+| 2014-03-14 |             1 |
+| 2014-04-05 |             1 |
+| 2014-05-06 |             1 |
+| 2014-06-06 |             1 |
+| 2014-06-30 |             1 |
+| 2014-07-07 |             1 |
+| 2014-07-10 |             1 |
++------------+---------------+
+16 rows in set (0.00 sec)</pre>
+<p>Bila diinginkan untuk mencari jumlah data yang nilai field `<em>tanggal</em>` adalah sama dengan tanggal hari ini bisa ditambahkan klausa<strong>&nbsp;WHERE tanggal=DATE(NOW())</strong>&nbsp;seperti ini:</p>
+<pre class="brush:sql">-- -cari jumlah data yang tanggalnya adalah hari ini
+SELECT tanggal,COUNT(*) AS jumlah_harian
+FROM tbl_data
+WHERE tanggal=DATE(NOW())
+GROUP BY tanggal;
+
++------------+---------------+
+| tanggal    | jumlah_harian |
++------------+---------------+
+| 2014-06-30 |             1 |
++------------+---------------+
+1 row in set (0.00 sec)</pre>
+<h1>Pengelompokan Data Mingguan</h1>
+<p>Pengelompokan data per minggu/mingguan dengan MySQL bisa dengan memanfaatkan fungsi&nbsp;<strong>YEARWEEK()</strong>.
+ Fungsi ini akan mengembalikan nilai minggu ke berapa dalam suatu tahun 
+dari tanggal yang dimasukkan. Contoh implementasinya adalah:</p>
+<pre class="brush:sql">-- -mengelompokkan per minggu
+SELECT YEARWEEK(tanggal) AS tahun_minggu,COUNT(*) AS jumlah_mingguan
+FROM tbl_data
+GROUP BY YEARWEEK(tanggal);
+
++--------------+-----------------+
+| tahun_minggu | jumlah_mingguan |
++--------------+-----------------+
+|       201327 |               1 |
+|       201349 |               1 |
+|       201350 |               1 |
+|       201352 |               1 |
+|       201401 |               2 |
+|       201402 |               1 |
+|       201405 |               2 |
+|       201408 |               1 |
+|       201410 |               1 |
+|       201413 |               1 |
+|       201418 |               1 |
+|       201422 |               1 |
+|       201426 |               1 |
+|       201427 |               2 |
++--------------+-----------------+
+14 rows in set (0.00 sec)
+
+-- -cari jumlah data yang tanggalnya ada di minggu ini
+SELECT YEARWEEK(tanggal) AS tahun_minggu,COUNT(*) AS jumlah_mingguan
+FROM tbl_data
+WHERE YEARWEEK(tanggal)=YEARWEEK(NOW())
+GROUP BY YEARWEEK(tanggal);
+
++--------------+-----------------+
+| tahun_minggu | jumlah_mingguan |
++--------------+-----------------+
+|       201426 |               1 |
++--------------+-----------------+
+1 row in set (0.00 sec)
+</pre>
+<h1>Pengelompokan Data Bulanan</h1>
+<p>Dalam pengelompokkan data perbulan kita bisa menggunakan fungsi&nbsp;<strong>MONTH()</strong>&nbsp;yang akan mengembalikan nilai bulan dari data tanggal yang dimasukkan. Contoh penggunaannya:</p>
+<pre class="brush:sql">-- -mengelompokkan per-bulan
+SELECT MONTH(tanggal) AS bulan, COUNT(*) AS jumlah_bulanan
+FROM tbl_data
+GROUP BY MONTH(tanggal);
++-------+----------------+
+| bulan | jumlah_bulanan |
++-------+----------------+
+|     1 |              4 |
+|     2 |              2 |
+|     3 |              2 |
+|     4 |              1 |
+|     5 |              1 |
+|     6 |              2 |
+|     7 |              3 |
+|    12 |              2 |
++-------+----------------+
+8 rows in set (0.00 sec)
+</pre>
+<p>Perlu diperhatikan disini, untuk penglompokkan data perbulan, maka 
+data juga perlu dikelompokkan berdasarkan tahun. Untuk keperluan 
+pengelompokkan data berdasarkan tahun kita gunakan fungsi&nbsp;<strong>YEAR()</strong>. Mengapa perlu penggunaan fungsi&nbsp;<strong>YEAR()</strong>&nbsp;juga?
+ hal ini karena bisa saja dalam tahun yang berbeda terdapat bulan yang 
+sama. Semisal terdapat data 2013-06-06 dan 2014-06-04, kedua-nya jika 
+hanya menggunakan fungsi&nbsp;<strong>MONTH()</strong>&nbsp;maka sama-sama akan terpilih datanya meskipun tahunnya berbeda.<br>Contoh pengelompokkan data perbulan adalah sebagai berikut:</p>
+<pre class="brush:sql">-- -mengelompokkan per-bulan (revisi)
+SELECT CONCAT(YEAR(tanggal),'/',MONTH(tanggal)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+FROM tbl_data
+GROUP BY YEAR(tanggal),MONTH(tanggal);
+
++-------------+----------------+
+| tahun_bulan | jumlah_bulanan |
++-------------+----------------+
+| 2013/7      |              1 |
+| 2013/12     |              2 |
+| 2014/1      |              4 |
+| 2014/2      |              2 |
+| 2014/3      |              2 |
+| 2014/4      |              1 |
+| 2014/5      |              1 |
+| 2014/6      |              2 |
+| 2014/7      |              2 |
++-------------+----------------+
+9 rows in set (0.00 sec)
+
+-- - cari jumlah data yang tanggalnya Tahun dan bulan ini
+SELECT CONCAT(YEAR(tanggal),'/',MONTH(tanggal)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+FROM tbl_data
+WHERE CONCAT(YEAR(tanggal),'/',MONTH(tanggal))=CONCAT(YEAR(NOW()),'/',MONTH(NOW()))
+GROUP BY YEAR(tanggal),MONTH(tanggal);
+
++-------------+----------------+
+| tahun_bulan | jumlah_bulanan |
++-------------+----------------+
+| 2014/6      |              2 |
++-------------+----------------+
+1 row in set (0.00 sec)</pre>
+<h1>Pengelompokan Data Tahunan</h1>
+<p>Seperti yang sudah dijelaskan sebelumnya, untuk pengelompokkan data pertahun kita menggunakan fungsi&nbsp;<strong>YEAR()</strong>&nbsp;sebagai berikut:</p>
+<pre class="brush:sql">-- -mengelompokkan per tahun
+SELECT YEAR(tanggal) AS tahun, COUNT(*) AS jumlah_tahunan
+FROM tbl_data
+GROUP BY YEAR(tanggal);
+
++-------+----------------+
+| tahun | jumlah_tahunan |
++-------+----------------+
+|  2013 |              3 |
+|  2014 |             14 |
++-------+----------------+
+2 rows in set (0.00 sec)
+
+
+-- cari jumlah yang tanggalnya tahun 2014
+SELECT YEAR(tanggal) AS tahun, COUNT(*) AS jumlah_tahunan
+FROM tbl_data
+WHERE YEAR(tanggal)='2014'
+GROUP BY YEAR(tanggal);
+
++-------+----------------+
+| tahun | jumlah_tahunan |
++-------+----------------+
+|  2014 |             14 |
++-------+----------------+
+1 row in set (0.00 sec)</pre>
+<h1>Penggunaan fungsi DATE_FORMAT() untuk Pengelompokan Data Bulanan/Tahunan</h1>
+<p>Selain menggunakan fungsi <strong>MONTH()</strong> dan <strong>YEAR()</strong> untuk pengelompokan data bulanan/tahunan, kita bisa juga memanfaatkan fungsi <strong>DATE_FORMAT()</strong>. Berikut contoh penggunaannya :</p>
+<pre class="brush:sql">-- -mengelompokkan per-bulan
+SELECT DATE_FORMAT(tanggal,'%Y/%m') AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+FROM tbl_data
+GROUP BY DATE_FORMAT(tanggal,'%Y%m');
+
++-------------+----------------+
+| tahun_bulan | jumlah_bulanan |
++-------------+----------------+
+| 2013/7      |              1 |
+| 2013/12     |              2 |
+| 2014/1      |              4 |
+| 2014/2      |              2 |
+| 2014/3      |              2 |
+| 2014/4      |              1 |
+| 2014/5      |              1 |
+| 2014/6      |              2 |
+| 2014/7      |              2 |
++-------------+----------------+
+9 rows in set (0.00 sec)
+
+-- -mengelompokkan per tahun
+SELECT DATE_FORMAT(tanggal,'%Y') AS tahun, COUNT(*) AS jumlah_tahunan
+FROM tbl_data
+GROUP BY DATE_FORMAT(tanggal,'%Y');
+
++-------+----------------+
+| tahun | jumlah_tahunan |
++-------+----------------+
+|  2013 |              3 |
+|  2014 |             14 |
++-------+----------------+
+2 rows in set (0.00 sec)
+
+</pre>
+<h1>Penutup</h1>
+<p>Demikian tutorial singkat mengenai pengelompokkan data berdasarkan 
+tanggal, minggu, bulan dan tahun. Semoga bermanfaat dan tidak lagi 
+membuat kita bingung untuk mengelompokkan data atau mencari data 
+berdasarkan suatu kurun waktu.Sebagai bahan pengayaan, dapat dibaca 
+mengenai fungsi-fungsi untuk tipe data&nbsp;<strong>DATE</strong>&nbsp;dan&nbsp;<strong>DATETIME</strong>&nbsp;seperti pada tautan di bagian referensi.</p>
+<p>&nbsp;</p>
+<p><strong>referensi</strong></p>
+<p><strong>-</strong><a title="http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html" href="http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html" target="_blank">&nbsp;http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html</a></p>                </div>
+              </div>
+              <div class="span3">
+                <button class="shortcut bg-color-yellow">
+                  <span class="icon fg-color-white">
+                      <i class="icon-book"></i>
+                  </span>
+                  <span class="label fg-color-white">
+                      Reads
+                  </span>
+                  <span class="badge">5568</span>
+                </button>
+                <button class="shortcut bg-color-green" id="bookmarkme">
+                  <span class="icon fg-color-white">
+                      <i class="icon-bookmark"></i>
+                  </span>
+                  <span class="label fg-color-white">
+                      Bookmark
+                  </span>
+                </button>
+                <button class="shortcut bg-color-greenLight" id="copy">
+                  <span class="icon fg-color-white">
+                      <i class="icon-copy"></i>
+                  </span>
+                  <span class="label fg-color-white">
+                      Copy
+                  </span>
+                </button>
+                              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $('#copy').click(function(){
+        selectText("content");
+      });
+      $('#bookmarkme').click(function() {
+            if (window.sidebar && window.sidebar.addPanel) { 
+                window.sidebar.addPanel(document.title,window.location.href,'');
+            } else if(window.external && ('AddFavorite' in window.external)) { 
+                window.external.AddFavorite(location.href,document.title); 
+            } else if(window.opera && window.print) { 
+                this.title=document.title;
+                return true;
+            } else { 
+                alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != - 1 ? 'Command/Cmd' : 'CTRL') + ' + D to bookmark this page.');
+            }
+        });
+      
+    </script>
+    <script type="text/javascript" src="Minerva%20%20%20Menampilkan%20Data%20Harian,%20Mingguan,%20Bulanan%20dan%20Tahunan%20dengan%20MySQL_files/prettify.js"></script>
+    <div class="page">
+        <div class="nav-bar bg-color-greenDark">
+            <div class="nav-bar-inner padding10">
+                <span class="element">
+                    2013-2017 Minerva © by <a class="fg-color-white" href="mailto:cahyadsn@gmail.com">Cahya DSN</a>
+                </span>
+            </div>
+        </div>
+    </div>
+  
+</body></html>

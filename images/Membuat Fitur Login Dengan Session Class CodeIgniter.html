@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Expires" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <meta name="description" content="">
+            <title>    Membuat Fitur Login Dengan Session Class CodeIgniter</title>
+        <link rel="icon" type="image/x-icon" href="https://www.dumetschool.com/dsicon.ico">
+                    <!-- Bootstrap - Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/bootstrap.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/bootstrap-theme.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+            <!-- Custom CSS -->
+            <link href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/custom.css" rel="stylesheet" type="text/css">
+            <link href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/black-tie.css" rel="stylesheet">
+            <link rel="stylesheet" href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/font-awesome.css">
+            <!-- Skitter Styles -->
+            <link href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/skitter.css" type="text/css" media="all" rel="stylesheet">
+                            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/1135584559861865.js" async=""></script><script async="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/fbevents.js"></script><script type="text/javascript" async="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/atrk.js"></script><script async="" charset="utf-8" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/a" type="text/javascript"></script><script async="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/analytics.js"></script><script id="facebook-jssdk" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/sdk.js"></script><script type="text/javascript" async="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/recaptcha__en.js"></script><script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/jquery.js"></script>
+            <!-- Accordion -->
+            <link id="main-css" href="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/accordion.css" rel="stylesheet">
+            <script type="text/javascript" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/accordion.js"></script>
+            <script type="text/javascript">
+            var accordion;
+            jQuery(document).bind("ready", function(){
+                accordion = jQuery(".accordion-wrap").accordion();
+            });
+            </script>
+            <!-- Recaptcha https://www.google.com/recaptcha/api.js -->
+            <!-- <script src='https://www.dumetschool.com/assets/js/recaptchaapi.min.js'></script> -->
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/api.js"></script>
+            
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/bootstrap.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/a_002"></script><style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">.zopim { display: none !important }</style></head><body><div class="zopim" __jx__id="___$_21 ___$_21" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px none; background: transparent none repeat scroll 0% 0%; overflow: hidden; position: fixed; z-index: 16000002; width: 180px; height: 30px; right: 10px; bottom: 0px; display: none;" data-test-id="ChatWidgetButton"><iframe style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;" src="about:blank" data-test-id="ChatWidgetButton-iframe" frameborder="0"></iframe></div><div class="zopim" __jx__id="___$_4 ___$_4" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px none; background: transparent none repeat scroll 0% 0%; overflow: hidden; position: fixed; z-index: 16000001; right: 10px; bottom: 0px; border-top-left-radius: 5px; border-top-right-radius: 5px; display: block; width: 240px; height: 200px; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px 2px;" data-test-id="ChatWidgetWindow"><iframe style="background-color: transparent; vertical-align: text-bottom; position: relative; width: 100%; height: 100%; min-width: 100%; min-height: 100%; max-width: 100%; max-height: 100%; margin: 0px; overflow: hidden; display: block;" src="about:blank" data-test-id="ChatWidgetWindow-iframe" frameborder="0"></iframe></div><div id="fb-root"></div>
+            <script>
+                (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                //js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=944679192239217";
+                js.src = "//dumetschool.com/assets/js/sdk.min.js#xfbml=1&version=v2.8&appId=944679192239217";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+            <!-- /facebook-button -->
+            <!-- Skitter JS -->
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/jquery_002.js"></script>
+            <script src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/jquery_003.js"></script>
+            <script>
+            $(document).ready(function(){
+              // Add smooth scrolling to all links
+              $("a").on('click', function(event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                  // Prevent default anchor click behavior
+                  event.preventDefault();
+
+                  // Store hash
+                  var hash = this.hash;
+
+                  // Using jQuery's animate() method to add smooth page scroll
+                  // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                  $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                  }, 800, function(){
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                  });
+                } // End if
+              });
+            });
+            </script>
+            <script>
+            $(function () {
+              $('[data-toggle="popover"]').popover()
+            })
+            </script>
+
+            <!-- Scroll to top -->
+    		<a href="#" id="back-to-top" title="Back to top" class="show">↑</a>
+            <!-- Scroll to top end-->
+            <!-- Scroll -->
+            <script type="text/javascript">
+                if ($('#back-to-top').length) {
+                    var scrollTrigger = 100, // px
+                        backToTop = function () {
+                            var scrollTop = $(window).scrollTop();
+                            if (scrollTop > scrollTrigger) {
+                                $('#back-to-top').addClass('show');
+                            } else {
+                                $('#back-to-top').removeClass('show');
+                            }
+                        };
+                    backToTop();
+                    $(window).on('scroll', function () {
+                        backToTop();
+                    });
+                    $('#back-to-top').on('click', function (e) {
+                        e.preventDefault();
+                        $('html,body').animate({
+                            scrollTop: 0
+                        }, 700);
+                    });
+                }
+            </script>
+            <div style="display: none">
+                <!-- Google Code for Remarketing Tag -->
+                <!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup -->
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    var google_conversion_id = 974813875;
+                    var google_custom_params = window.google_tag_params;
+                    var google_remarketing_only = true;
+                    /* ]]> */
+                </script>
+                <script type="text/javascript" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/conversion.js"></script>
+                <noscript>
+                    <div style="display:inline;">
+                    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/974813875/?value=0&amp;guid=ON&amp;script=0"/>
+                    </div>
+                </noscript>
+            </div>
+            
+            <!-- GOOGLE ANALYICS -->
+            <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-45382709-1','dumetschool.com');ga('send','pageview');</script>
+            <!--Start of Zopim Live Chat Script-->
+            <script type="text/javascript">
+                window.$zopim || (function(d, s) {
+                    var z = $zopim = function(c) { z._.push(c) }, $ = z.s = d.createElement(s), e = d.getElementsByTagName(s)[0];
+                    z.set = function(o) {
+                        z.set.
+                        _.push(o)
+                    };
+                    z._ = [];
+                    z.set._ = [];
+                    $.async = !0;
+                    $.setAttribute('charset', 'utf-8');
+                    $.src = '//v2.zopim.com/?1x2FUTnlIVknDc20JsBwS6ZsVVB977xN';
+                    z.t = +new Date;
+                    $.
+                    type = 'text/javascript';
+                    e.parentNode.insertBefore($, e)
+                })(document, 'script');
+            </script>
+            <!-- Start Alexa Certify -->
+            <script type="text/javascript">
+                _atrk_opts = {
+                    atrk_acct: "CVEUi1a8Dy00GE",
+                    domain: "dumetschool.com",
+                    dynamic: true
+                };
+                (function() {
+                    var as = document.createElement('script');
+                    as.type = 'text/javascript';
+                    as.async = true;
+                    as.src = "https://www.dumetschool.com/assets/js/atrk.min.js";
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(as, s);
+                })();
+            </script>
+            <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=CVEUi1a8Dy00GE" style="display:none" height="1" width="1" alt="" /></noscript>
+            <!-- End Alexa Certify -->
+                
+                    <!-- Facebook Pixel Code -->
+            <script>
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1135584559861865'); // Insert your pixel ID here.
+            fbq('track', 'PageView');
+            </script>
+            <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1135584559861865&ev=PageView&noscript=1"
+            /></noscript>
+            <!-- DO NOT MODIFY -->
+            <!-- End Facebook Pixel Code -->
+            
+    
+            <div class="container-fluid header"><div class="row"><nav class="navbar navbar-default"><div class="container-fluid"><div class="row"><div class="col-md-12"><div class="navbar-header"><button class="collapsed navbar-toggle" type="button" aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a href="https://www.dumetschool.com/" class="navbar-brand"><img class="img-responsive" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/logo.png"></a></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><ul class="nav navbar-nav navbar-right"><li class="dropdown"><a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Program Kursus <span class="caret"></span></a> <ul class="dropdown-menu"> <li class="dropdown-header">Pilih Program Kursus:</li><li><a href="https://www.dumetschool.com/kursus-web-master">Web Master</a></li><li><a href="https://www.dumetschool.com/kursus-graphic-design">Graphic Design</a></li><li><a href="https://www.dumetschool.com/kursus-digital-marketing">Digital Marketing</a></li><li><a href="https://www.dumetschool.com/kursus-web-programming">Web Programming</a></li><li><a href="https://www.dumetschool.com/kursus-web-design">Web Design</a></li></ul></li><li class="dropdown"><a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Hubungi Kami <span class="caret"></span></a><ul class="dropdown-menu"><li class="dropdown-header">Pilih Lokasi Terdekat:</li><li><a>Cabang Kelapa Gading: (021) 4585-0387</a></li><li><a>Cabang Grogol: (021) 2941-1188</a></li><li><a>Cabang Tebet: (021) 2298-3886</a></li><li><a>Cabang Srengseng: (021) 5890-8355</a></li><li><a>Cabang Depok: (021) 7720-7657</a></li><li class="divider" role="separator"></li><li class="dropdown-header">Kirim Email:</li><li><a>info<i aria-hidden="true" class="fa fa-at"></i>dumetschool.com</a></li><li class="divider" role="separator"></li><li class="dropdown-header">Kirim SMS / WhatsApp:</li><li><a>Cabang Kelapa Gading: 0851-0055-5666</a></li><li><a>Cabang Grogol: 0819-7555-666</a></li><li><a>Cabang Tebet: 0812-1999-9155</a></li><li><a>Cabang Srengseng: 0812-9933-3913</a></li><li><a>Cabang Depok: 0812-9393-3210</a></li></ul></li><li class="dropdown"><a href="https://www.dumetschool.com/blog/" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">Blog <span class="caret"></span></a>         <ul class="dropdown-menu">
+            
+                <li class="first">        <a href="https://www.dumetschool.com/blog/category/website">Website</a>        
+    </li>
+
+    
+                <li>        <a href="https://www.dumetschool.com/blog/category/marketing">Marketing</a>        
+    </li>
+
+    
+                <li>        <a href="https://www.dumetschool.com/blog/category/teknologi">Teknologi</a>        
+    </li>
+
+    
+                <li>        <a href="https://www.dumetschool.com/blog/category/artikel-bebas">Artikel Bebas</a>        
+    </li>
+
+    
+                <li class="last">        <a href="https://www.dumetschool.com/blog/category/desain">Desain</a>        
+    </li>
+
+
+    </ul>
+</li><li class="dropdown"><a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button">More <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="https://www.dumetschool.com/about/">Tentang Kami</a></li></ul></li><li class="dropdown"><a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" role="button"><i aria-hidden="true" class="fa fa-search"></i></a><ul class="dropdown-menu"><li class="dropdown-header">Cari artikel dari blog:</li><li class="dropdown-header"><form action="/search/postbytitle" class="form-inline" method="POST" name="search_post_bytitle"><div class="form-group"><label class="sr-only" for="exampleInputKeyword3">Masukkan judul...</label><input class="form-control" id="exampleInputKeyword3" name="title" placeholder="Ketik judul..."></div><button class="btn-green btn-ori" type="submit" name="submit">Cari</button></form></li></ul></li></ul></div></div></div></div></nav></div></div>
+        <div class="blog-detail">
+    <div class="container-fluid blog-detail-content">
+				<div class="row">
+						<div class="col-md-2 hidden-sm hidden-xs"></div>
+						<div class="col-md-8">
+								<div class="height40"></div>
+                								<h1 class="text-capitalize">Membuat Fitur Login Dengan Session Class CodeIgniter</h1>
+								<div class="height10"></div>
+								<p>
+                    <i class="btr bt-calendar"></i> <span>08/08/2014</span>&nbsp;&nbsp;&nbsp;
+                    <i class="btr bt-user"></i> <span><a href="https://www.dumetschool.com/profile/reza-indra">Reza Indra</a></span>&nbsp;&nbsp;&nbsp;
+                    <i class="btr bt-eye"></i> <span> 33917 </span>&nbsp;&nbsp;&nbsp;
+                    <i class="btr bt-folder"></i> <span><a href="https://www.dumetschool.com/blog/category/website">Website</a></span>
+                </p>
+								<div class="blog-detail-cover" style="background-image: url('/uploads/post/mvc.jpg')">
+										<img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent930x350.png" class="img-responsive btn-block">
+								</div>
+                
+                                                            <p>
+	Hai, dalam tutorial kali ini kita akan membuat fitur login dengan 
+Framework CodeIgniter. Untuk membuat fitur login, pasti membutuhkan 
+sebuah fasilitas untuk mengenali id seorang user, untuk itu CodeIgniter 
+sudah mempersiapkan class Session yang nanti akan digunakan dalam 
+membuat sistem login ini.</p>
+<p>
+	Langkah pertama, buatlah file login.php dalam folder Controller teman-teman.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_1.jpg" style="width: 139px; height: 111px;"></p>
+<p>
+	Jalankan text editor PHP Designer, tulis baris program berikut. Di dalam class Login buatlah beberapa function.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_3.jpg"></p>
+<p>
+	Kemudian buat juga folder login dan di dalamnya buat file index.php dan admin_page.php.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_2.jpg" style="width: 179px; height: 100px;"></p>
+<p>
+	Sekarang ketiklah baris program berikut pada function __construct() untuk load library session.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_4.jpg" style="width: 371px; height: 92px;"></p>
+<p>
+	Ketik baris program berikut pada function index().</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_5.jpg" style="width: 565px; height: 346px;"></p>
+<p>
+	Sekarang, buka file index.php yang ada di dalam folder login. Buat form untuk login.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_6.jpg" style="width: 449px; height: 275px;"></p>
+<p>
+	Nah, karena jika berhasil login akan di-redirect ke halaman admin, 
+berarti kita buat funtion admin_page() untuk me-load pada halaman 
+admin_page.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_7.jpg" style="width: 424px; height: 74px;"></p>
+<p>
+	Buka file admin_page.php yang ada dalam folder login dan cetak session dan buat link logout-nya.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_8.jpg" style="width: 619px; height: 219px;"></p>
+<p>
+	Sekarang kita coba jalankan http://codeigniter/index.php/login.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_10.jpg" style="width: 316px; height: 299px;"></p>
+<p>
+	Jika username dan password benar.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_11.jpg" style="width: 316px; height: 299px;"></p>
+<p>
+	Buat funtion logout() untuk menghapus session dan redirect kembali ke halaman login.</p>
+<p>
+	<img alt="" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/session_9.jpg" style="width: 603px; height: 128px;"></p>
+
+                                    
+                <p><i class="fa fa-tags fa-fw"></i>
+                                        No data.
+                                  </p>
+						</div>
+						<div class="col-md-2 hidden-sm hidden-xs"></div>
+				</div>
+		</div><!-- /blog-detail-content -->
+
+    <div class="height20"></div>
+    <div class="container-fluid bgf6f6f6 text-center offer1">
+        <div class="row">
+            <div class="col-md-1 hidden-sm hidden-xs"></div>
+            <div class="col-md-10">
+                                    <h3><a href="http://dumetschool.com/kursus-web-master">Cara Cepat Pintar Membuat Website, Tanpa Perlu Basic IT</a></h3>
+                    <div class="height10"></div>
+                    <p class="lead">
+                                            </p><p>Membuat website perusahaan, portal berita, blog, katalog online, dan e-commerce.</p>
+                                        <p></p>
+                    <div class="height20"></div>
+                    <a href="http://dumetschool.com/kursus-web-master" class="btn btn-green">Learn More</a>
+                            </div>
+            <div class="col-md-1 hidden-sm hidden-xs"></div>
+        </div>
+    </div><!-- offertextone -->
+
+    <div class="height40"></div>
+		<div class="container-fluid blog-related">
+				<div class="row">
+						<div class="col-md-2 hidden-sm hidden-xs"></div>
+						<div class="col-md-8">
+								<h3>Related Posts</h3>
+								<div class="height20"></div>
+								<div class="row">
+                    										<div class="col-md-4 col-sm-4">
+												<a href="https://www.dumetschool.com/blog/fungsi-dari-meta-charset-utf-8-pada-html" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/post/meta-charset-cover.jpg')">
+														<img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+												</a>
+												<div class="height10 hidden-xs"></div>
+												<h3><a href="https://www.dumetschool.com/blog/fungsi-dari-meta-charset-utf-8-pada-html">Fungsi dari Meta Charset UTF-8 pada HTML</a></h3>
+										</div>
+                    										<div class="col-md-4 col-sm-4">
+												<a href="https://www.dumetschool.com/blog/Menyisipkan-Gambar-Pada-Dokumen-PDF-Dengan-PHP" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/post/cover-menyisipkan-gambar-pada-dokumen-pdf-dengan-PHP-30-08-2105-0.png')">
+														<img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+												</a>
+												<div class="height10 hidden-xs"></div>
+												<h3><a href="https://www.dumetschool.com/blog/Menyisipkan-Gambar-Pada-Dokumen-PDF-Dengan-PHP">Menyisipkan Gambar Pada Dokumen PDF Dengan PHP</a></h3>
+										</div>
+                    										<div class="col-md-4 col-sm-4">
+												<a href="https://www.dumetschool.com/blog/Mencetak-Output-Di-Javascript-bagian-3" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/post/kursusjavascript.png')">
+														<img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+												</a>
+												<div class="height10 hidden-xs"></div>
+												<h3><a href="https://www.dumetschool.com/blog/Mencetak-Output-Di-Javascript-bagian-3">Mencetak Output Di Javascript (bagian 3)</a></h3>
+										</div>
+                    								</div>
+						</div>
+						<div class="col-md-2 hidden-sm hidden-xs"></div>
+				</div>
+		</div><!-- /blog-related -->
+    <div class="container-fluid blog-related offer2">
+        <div class="row">
+            <div class="col-md-2 hidden-sm hidden-xs"></div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                                                    <a href="http://dumetschool.com/kursus-web-master" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/offerimg/c75f8005494e87397e7ba78be553c259.jpeg')">
+                                <img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+                            </a>
+                            <div class="height10 hidden-xs"></div>
+                            <h3><a href="http://dumetschool.com/kursus-web-master">Cara Cepat Pintar Membuat Website, Tanpa Perlu Basic IT</a></h3>
+                                            </div>
+                    <div class="col-md-4 col-sm-4">
+                                                    <a href="http://dumetschool.com/kursus-digital-marketing" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/offerimg/c7caf2c56d66289c6e655dc2da349616.png')">
+                                <img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+                            </a>
+                            <div class="height10 hidden-xs"></div>
+                            <h3><a href="http://dumetschool.com/kursus-digital-marketing">Cara Promosi di Google dan Social Media</a></h3>
+                                            </div>
+                    <div class="col-md-4 col-sm-4">
+                                                    <a href="http://dumetschool.com/kursus-graphic-design" class="blog-related-thumbnail hidden-xs" style="background-image: url('/uploads/offerimg/78fadb9e5cde38c6bf87f26ff313b0d2.jpeg')">
+                                <img src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/transparent300x150.png" class="img-responsive btn-block">
+                            </a>
+                            <div class="height10 hidden-xs"></div>
+                            <h3><a href="http://dumetschool.com/kursus-graphic-design">Belajar Mendesain Logo, Brosur, Majalah, Edit Foto</a></h3>
+                                            </div>
+                </div>
+            </div>
+            <div class="col-md-2 hidden-sm hidden-xs"></div>
+        </div>
+    </div><!-- offerimage -->
+
+		<div class="height40"></div>
+    <div class="container-fluid text-center bgf6f6f6 offer3">
+        <div class="row">
+            <div class="col-md-1 hidden-sm hidden-xs"></div>
+            <div class="col-md-10">
+                                    <h3><a href="http://dumetschool.com/kursus-web-master">Cara Cepat Pintar Membuat Website, Tanpa Perlu Basic IT</a></h3>
+                    <div class="height10"></div>
+                    <p class="lead">
+                                            </p><p>Membuat website perusahaan, portal berita, blog, katalog online, dan e-commerce.</p>
+                                        <p></p>
+                    <div class="height20"></div>
+                    <a href="http://dumetschool.com/kursus-web-master" class="btn btn-green">Learn More</a>
+                            </div>
+            <div class="col-md-1 hidden-sm hidden-xs"></div>
+        </div>
+    </div><!-- offertexttwo -->
+</div><!-- /blog-detail-content -->
+                    <div class="bgnoise container-fluid footer"><div class="row"><div class="col-md-1 hidden-sm hidden-xs"></div><div class="col-md-10"><div class="row follow"><div class="col-md-12"><p class="sosmed">Follow us on: <a href="https://www.facebook.com/dumetschool" target="_blank"><i aria-hidden="true" class="fa fa-facebook-official"></i></a> <a href="https://twitter.com/dumetschool" target="_blank"><i aria-hidden="true" class="fa fa-twitter"></i></a> <a href="https://www.youtube.com/channel/UCBWFSRzezvSj1LEMXUZnFIA" target="_blank"><i aria-hidden="true" class="fa fa-youtube-play"></i></a> <a href="https://www.instagram.com/dumetschool/" target="_blank"><i aria-hidden="true" class="fa fa-instagram"></i></a></p></div></div><div class="row office-title"><div class="col-md-12"><h3 class="fontsize36">Lokasi Kantor</h3></div></div><div class="row office"><div class="col-md-4"><dl><dt>Kelapa Gading</dt><dd>Rukan Artha Gading Niaga Blok i - 23, Jalan Boulevard Artha Gading</dd><dd>Kelapa Gading, Jakarta Utara 14240</dd><dd>(Belakang Mall Artha Gading)</dd><dd>Telp: <a href="tel:02145850387">(021) 4585-0387</a></dd><div class="height10"></div></dl><dl><dt>Grogol</dt><dd>Ruko Jalan Taman Daan Mogot Raya No. 23</dd><dd>Kel. Tanjung Duren Utara Kec. Grogol Petamburan, Jakarta Barat 11470</dd><dd>(Belakang Mall Citraland dan Kampus UNTAR II)</dd><dd>Telp: <a href="tel:02129411188">(021) 2941-1188</a></dd><div class="height10"></div></dl><dl><dt>Tebet</dt><dd>Rukan Crown Palace Blok A no 12, Jl Prof Dr Soepomo no 231 (Samping Universitas Sahid). Kec. Tebet, Kel. Menteng Dalam</dd><dd>(± 1 Menit dari Tugu Pancoran)</dd><dd>Jakarta Selatan 12870</dd><dd>Telp: <a href="tel:02122983886">(021) 2298-3886</a></dd><div class="height10"></div></dl></div><div class="col-md-4"><dl><dt>Srengseng</dt><dd>Ruko Permata Regensi Blok B - 18, Jalan Haji Kelik</dd><dd>Srengseng, Kebon Jeruk, Jakarta Barat 11630</dd><dd>(Depan Hutan Kota Srengseng)</dd><dd>Telp: <a href="tel:02158908355">(021) 5890-8355</a></dd><div class="height10"></div></dl><dl><dt>Depok</dt><dd>Ruko Jalan Kartini Raya No. 53</dd><dd>Pancoran Mas, Depok 16436</dd><dd>(± 5 Menit dari Kantor Walikota Depok)</dd><dd>Telp: <a href="tel:02177207657">(021) 7720-7657</a></dd><div class="height10"></div></dl><div>Buka setiap hari Senin - Minggu jam 09.00 s/d 21.00</div><div class="height30"></div></div><div class="col-md-4"><dl><dt>SMS / WhatsApp / Email</dt><dd>Kelapa Gading: <a href="tel:085100555666">0851-0055-5666</a></dd><dd>Grogol: <a href="tel:08197555666">0819-7555-666</a></dd><dd>Tebet: <a href="tel:081219999155">0812-1999-9155</a></dd><dd>Srengseng: <a href="tel:081299333913">0812-9933-3913</a></dd><dd>Depok: <a href="tel:081293933210">0812-9393-3210</a></dd><div class="height10"></div><dd><i aria-hidden="true" class="fa fa-envelope-o"></i> <a href="mailto:info@dumetschool.com">info<i aria-hidden="true" class="fa fa-at"></i>dumetschool.com</a></dd><div class="height10"></div><div class="fb-share-button" data-href="http://dumetschool.com/" data-layout="button_count" data-mobile-iframe="true" data-size="large"><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdumetschool.com%2F&amp;src=sdkpreparse" target="_blank" class="fb-xfbml-parse-ignore">Share</a></div><div class="height30"></div><img class="img-responsive" src="Membuat%20Fitur%20Login%20Dengan%20Session%20Class%20CodeIgniter_files/badge-aca.png"></dl></div></div><div class="row copyright"><div class="col-md-12"><p><small>Copyright © 2017 <a href="https://www.dumetschool.com/">DUMET School</a>. All rights reserved. <a href="https://www.dumetschool.com/privacy">Privacy</a></small></p></div></div></div><div class="col-md-1 hidden-sm hidden-xs"></div></div></div>
+            
+
+</body></html>

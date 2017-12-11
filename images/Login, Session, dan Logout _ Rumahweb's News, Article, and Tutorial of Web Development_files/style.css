@@ -1,0 +1,254 @@
+/*
+Theme Name: Twenty Seventeen Child
+Theme URI: http://www.rumahweb.co.id/
+Description: Custom Child Wordpress Theme for Rumahweb's Journal.
+Version: 1.0
+Author: Orang Rumah
+Template: twentyseventeen
+*/
+@import url("../twentyseventeen/style.css");
+a:hover{
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	text-decoration: underline;
+}
+.site-content-contain:before{
+	content: 'JOURNAL';
+	text-align: center;
+	display: block;
+	font-size: 100px;
+	color: #f0f0f0;
+	font-weight: 800;
+	margin-bottom: -130px;
+}
+.entry-title {
+	font-size: 25px !important;
+	font-weight: 400;
+	letter-spacing: 0;
+	color: #1994d6 !important;
+	text-transform: none;
+}
+.entry-title a{
+	color: inherit;
+}
+.entry-meta	{
+	font-size: 10px;
+	font-weight: lighter;
+}
+.entry-content{
+	font-size: medium;
+}
+.entry-content blockquote{
+	font-size: medium;
+	margin: 10px;
+	padding: 10px;
+}
+.entry-content p{
+	margin: 15px 0 !important;
+}
+.entry-content ul { 
+   list-style-type: disc; 
+   list-style-position: outside; 
+   margin-left: 30px;
+}
+.entry-content ol { 
+   list-style-type: decimal; 
+   list-style-position: outside; 
+   margin-left: 30px;
+}
+.entry-content ul ul, ol ul { 
+   list-style-type: circle; 
+   list-style-position: outside; 
+   margin-left: 15px; 
+}
+.entry-content ol ol, ul ol { 
+   list-style-type: lower-latin; 
+   list-style-position: outside; 
+   margin-left: 15px; 
+}
+.entry-content img, .entry-content a img, .entry-content ol li a img{
+	margin: 10px 0 !important;
+}
+/*--------------------------------------------------------------
+15.0 Widgets
+--------------------------------------------------------------*/
+
+#secondary {
+	padding: 1em 0 2em;
+}
+.has-sidebar #primary{
+	width: 73% !important;
+}
+.has-sidebar #secondary{
+	width: 25% !important;
+}
+.widget {
+	padding-bottom: 3em;
+}
+
+h2.widget-title {
+	color: #555;
+	font-size: 13px;
+	font-weight: 800;
+	margin-bottom: 1em;
+	text-transform: uppercase;
+}
+
+.widget-title a {
+	color: inherit;
+}
+
+/* widget forms */
+
+.widget select {
+	width: 100%;
+}
+
+
+/* widget lists */
+
+.widget ul {
+	list-style: none;
+	margin: 0;
+}
+
+.widget ul li {
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	padding:  7px 0;
+	font-size: 13px;
+	margin: 0;
+}
+.widget_rss ul{
+	margin: 0;
+	padding: 0;
+}
+.widget_rss ul li{
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+.widget ul li:hover {
+	background-color: #f9f9f9;
+}
+.widget ul li a:hover{
+	border-bottom: none !important;
+}
+
+.widget ul li + li {
+	margin-top: -1px;
+}
+
+.widget ul li ul {
+	margin: 0 0 -1px;
+	padding: 0;
+	position: relative;
+}
+
+.widget ul li li {
+	border: 0;
+	padding-left: 24px;
+	padding-left: 1.5rem;
+}
+.widget .tagcloud a{
+	font-size: small !important;
+}
+.widget .tagcloud a:hover{
+	background-color: #f0f0f0;
+}
+.widget-area section{
+	margin-bottom: 20px !important;
+}
+.rss-date{
+	font-size: 8px !important;
+	font-weight: lighter !important;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+.page-numbers{
+	font-weight: lighter !important;
+	font-size: small !important;
+	line-height: 13px;
+}
+.page-numbers.current{
+	font-weight: 800 !important;
+	background-color: #f0f0f0 !important;
+	border-radius: 50px !important;
+}
+.page-title{
+	color: #739442;
+}
+.page-title a{
+	color: inherit;
+}
+footer table tr{
+	border: none !important;
+}
+footer table tr td{
+	text-align: left !important;
+}
+footer p{
+	margin: 10px 0 !important;
+}
+footer a{
+	color: #d0d0d0;
+}
+footer h4{
+	color: #d0d0d0 !important;
+	margin: 10px 0;
+}
+.sociable .sociable_tagline{
+	font-size: 10px;
+	text-transform: uppercase;
+	color: #739442;
+	margin-left: 3px;
+	font-weight: 600;
+}
+.nav-title{
+	font-size: small;
+	font-weight: normal;
+	color: #739442;
+}
+footer.entry-footer{
+	background-color: inherit;
+	font-size: 18px !important;
+	background-color: #f0f0f0;
+	padding: 20px 0;
+}
+footer.entry-footer .cat-links{
+	color: #555;
+}
+footer.entry-footer .cat-links a{
+	font-size: 10px !important;
+	font-weight: normal;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+footer.entry-footer .cat-links a:hover{
+	text-decoration: underline;
+}
+footer.comment-meta{
+	background-color: inherit;
+	height: auto;
+	margin: 0;
+	padding: 0;
+}
+footer.comment-meta div, .comment-author{
+	font-size: 10px !important;
+}
+.comment-author .fn, .comment-author .fn a{
+	color: #555;
+}
+.comment-content p{
+	font-size: 12px;
+	margin: 5px 0;
+}
+.search-submit{
+	color: #fff !important;
+}
+.car-list>li{
+	margin: 20px 0;
+}
+.car-yearmonth{
+	font-weight: 600;
+}
